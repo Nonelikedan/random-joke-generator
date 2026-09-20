@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  /* Swapped standard Arial for a crisp, modern geometric font */
+  font-family: 'Inter', sans-serif;
+  /* Added a subtle radial gradient for a premium dark background */
+  background: radial-gradient(circle at top left, #231b24, #0d0d12);
+  color: #ffffff;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.joke-card {
+  width: 100%;
+  max-width: 650px;
+  padding: 50px;
+  /* Glassmorphism effect: slightly transparent background with a soft border and shadow */
+  background: rgba(25, 25, 30, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  border-radius: 24px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  /* Neon crimson accent color */
+  color: #ff2a5f; 
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.description {
+  max-width: 450px;
+  margin: 0 auto 32px;
+  color: #a0a0ab;
+  line-height: 1.6;
+}
+
+.joke-box {
+  min-height: 180px;
+  display: flex;
+  /* FIX: Forces the setup, button, and punchline to stack vertically */
+  flex-direction: column; 
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  margin-bottom: 32px;
+  /* Made the box darker than the card to create depth */
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+}
+
+#joke {
+  font-size: 22px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #e2e8f0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.punchline-text {
+  color: #ff4757;
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-style: italic;
+  width: 100%;
+  padding: 16px;
+  /* Swapped the harsh white background for a translucent crimson glow */
+  background-color: rgba(255, 71, 87, 0.1);
+  border-left: 4px solid #ff4757;
+  border-radius: 0 8px 8px 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Button Styling Separation */
+#jokeBtn {
+  border: none;
+  padding: 18px 32px;
+  border-radius: 999px;
+  /* Primary button gets the bold crimson color */
+  background: #ff2a5f;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 42, 95, 0.3);
+  transition: all 0.3s ease;
+}
+
+#jokeBtn:hover {
+  transform: translateY(-3px);
+  background: #ff4070;
+  box-shadow: 0 8px 25px rgba(255, 42, 95, 0.5);
+}
+
+#revealBtn {
+  border: 2px solid #ff2a5f;
+  padding: 12px 24px;
+  border-radius: 999px;
+  /* Reveal button gets a hollow "ghost" style so it doesn't compete with the main button */
+  background: transparent;
+  color: #ff2a5f;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#revealBtn:hover {
+  background: rgba(255, 42, 95, 0.1);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 16px;
+  }
+  .joke-card {
+    padding: 32px 20px;
+    border-radius: 18px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  .joke-box {
+    min-height: 200px;
+    padding: 24px 18px;
+  }
+  #joke {
+    font-size: 18px;
+  }
+  #jokeBtn {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
