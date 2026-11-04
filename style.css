@@ -8,14 +8,45 @@
 
 body {
   min-height: 100vh;
-  /* Swapped standard Arial for a crisp, modern geometric font */
   font-family: 'Inter', sans-serif;
-  /* Added a subtle radial gradient for a premium dark background */
-  background: radial-gradient(circle at top left, #231b24, #0d0d12);
-  color: #ffffff;
+  background:
+    radial-gradient(circle at top left, rgba(116, 92, 255, 0.38), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(255, 56, 130, 0.22), transparent 28%),
+    linear-gradient(135deg, #090b18 0%, #111827 45%, #090b18 100%);
+  color: #f8faff;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.7;
+  z-index: 0;
+}
+
+body::before {
+  width: 280px;
+  height: 280px;
+  background: rgba(34, 211, 238, 0.22);
+  top: 10%;
+  left: 8%;
+}
+
+body::after {
+  width: 320px;
+  height: 320px;
+  background: rgba(236, 72, 153, 0.18);
+  right: 10%;
+  bottom: 12%;
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -24,62 +55,87 @@ body {
 }
 
 .joke-card {
+  position: relative;
   width: 100%;
-  max-width: 650px;
-  padding: 50px;
-  /* Glassmorphism effect: slightly transparent background with a soft border and shadow */
-  background: rgba(25, 25, 30, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  border-radius: 24px;
+  max-width: 680px;
+  padding: 50px 44px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(17, 24, 39, 0.65));
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 25px 60px rgba(15, 23, 42, 0.8),
+    0 0 35px rgba(34, 211, 238, 0.18),
+    0 0 55px rgba(243, 88, 183, 0.08);
+  border-radius: 28px;
   text-align: center;
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.joke-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 35%, transparent 65%, rgba(99, 102, 241, 0.14));
+  pointer-events: none;
 }
 
 .eyebrow {
-  margin-bottom: 16px;
-  font-size: 13px;
+  position: relative;
+  margin-bottom: 18px;
+  font-size: 12px;
   font-weight: 900;
-  letter-spacing: 3px;
-  /* Neon crimson accent color */
-  color: #ff2a5f; 
+  letter-spacing: 0.35rem;
+  color: #7dd3fc;
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(125, 211, 252, 0.75);
 }
 
 h1 {
+  position: relative;
   margin-bottom: 12px;
-  font-size: 48px;
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 900;
-  letter-spacing: -1px;
+  letter-spacing: -0.08em;
+  line-height: 0.95;
+  background: linear-gradient(90deg, #f8fafc 0%, #c084fc 25%, #7dd3fc 52%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
 }
 
 .description {
-  max-width: 450px;
-  margin: 0 auto 32px;
-  color: #a0a0ab;
-  line-height: 1.6;
+  position: relative;
+  max-width: 470px;
+  margin: 0 auto 30px;
+  color: rgba(191, 219, 254, 0.8);
+  line-height: 1.7;
+  font-size: 1rem;
 }
 
 .joke-box {
-  min-height: 180px;
+  position: relative;
+  min-height: 190px;
   display: flex;
-  /* FIX: Forces the setup, button, and punchline to stack vertically */
-  flex-direction: column; 
+  flex-direction: column;
   gap: 20px;
   align-items: center;
   justify-content: center;
-  padding: 40px 30px;
-  margin-bottom: 32px;
-  /* Made the box darker than the card to create depth */
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  border-radius: 16px;
+  padding: 36px 30px;
+  margin-bottom: 28px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(12, 16, 26, 0.9));
+  border: 1px solid rgba(125, 211, 252, 0.14);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 24px rgba(34, 211, 238, 0.05);
 }
 
 #joke {
-  font-size: 22px;
-  line-height: 1.6;
-  font-weight: 400;
-  color: #e2e8f0;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  line-height: 1.7;
+  font-weight: 500;
+  color: #edf6ff;
+  text-shadow: 0 0 18px rgba(125, 211, 252, 0.12);
 }
 
 .hidden {
@@ -87,76 +143,86 @@ h1 {
 }
 
 .punchline-text {
-  color: #ff4757;
-  font-size: 1.35rem;
-  font-weight: 700;
-  font-style: italic;
   width: 100%;
-  padding: 16px;
-  /* Swapped the harsh white background for a translucent crimson glow */
-  background-color: rgba(255, 71, 87, 0.1);
-  border-left: 4px solid #ff4757;
-  border-radius: 0 8px 8px 0;
+  padding: 16px 18px;
+  color: #ffe4f2;
+  font-size: 1.3rem;
+  font-weight: 800;
+  font-style: italic;
+  background: linear-gradient(90deg, rgba(244, 114, 182, 0.15), rgba(168, 85, 247, 0.12));
+  border-left: 4px solid #f472b6;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 0 18px rgba(244, 114, 182, 0.2);
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Button Styling Separation */
-#jokeBtn {
+#jokeBtn,
+#revealBtn {
+  appearance: none;
   border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+#jokeBtn {
+  position: relative;
   padding: 18px 32px;
   border-radius: 999px;
-  /* Primary button gets the bold crimson color */
-  background: #ff2a5f;
+  background: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 45%, #f472b6 100%);
   color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 42, 95, 0.3);
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 28px rgba(139, 92, 246, 0.45), 0 0 28px rgba(34, 211, 238, 0.3);
 }
 
 #jokeBtn:hover {
-  transform: translateY(-3px);
-  background: #ff4070;
-  box-shadow: 0 8px 25px rgba(255, 42, 95, 0.5);
+  transform: translateY(-2px) scale(1.01);
+  filter: brightness(1.06);
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.58), 0 0 38px rgba(34, 211, 238, 0.34);
 }
 
 #revealBtn {
-  border: 2px solid #ff2a5f;
   padding: 12px 24px;
   border-radius: 999px;
-  /* Reveal button gets a hollow "ghost" style so it doesn't compete with the main button */
-  background: transparent;
-  color: #ff2a5f;
-  font-size: 14px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(244, 114, 182, 0.7);
+  color: #fbcfe8;
+  font-size: 0.9rem;
   font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: inset 0 0 12px rgba(244, 114, 182, 0.18), 0 0 18px rgba(244, 114, 182, 0.18);
 }
 
 #revealBtn:hover {
-  background: rgba(255, 42, 95, 0.1);
-  transform: scale(1.05);
+  transform: translateY(-1px) scale(1.04);
+  background: rgba(244, 114, 182, 0.08);
+  box-shadow: inset 0 0 12px rgba(244, 114, 182, 0.25), 0 0 20px rgba(244, 114, 182, 0.25);
 }
 
 @media (max-width: 600px) {
   .container {
     padding: 16px;
   }
+
   .joke-card {
     padding: 32px 20px;
-    border-radius: 18px;
+    border-radius: 22px;
   }
-  h1 {
-    font-size: 32px;
+
+  .eyebrow {
+    letter-spacing: 0.24rem;
   }
+
   .joke-box {
     min-height: 200px;
     padding: 24px 18px;
   }
+
   #joke {
-    font-size: 18px;
+    font-size: 1.15rem;
   }
+
   #jokeBtn {
     width: 100%;
   }
